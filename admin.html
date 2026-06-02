@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrador | Gestión de Préstamos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Barra lateral: navegacion principal del administrador -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <h1>Gestión de Préstamos</h1>
+        <span>Biblioteca · Administración</span>
+      </div>
+      <p class="sidebar__role">Rol: Administrador</p>
+      <ul class="nav-menu">
+        <li class="nav-menu__item">
+          <a href="#inicio" class="nav-menu__link nav-menu__link--active">Inicio</a>
+        </li>
+        <li class="nav-menu__item">
+          <a href="#equipos" class="nav-menu__link">Gestión de equipos</a>
+        </li>
+        <li class="nav-menu__item">
+          <a href="#estudiantes" class="nav-menu__link">Gestión de estudiantes</a>
+        </li>
+        <li class="nav-menu__item">
+          <a href="#devoluciones" class="nav-menu__link">Registrar devolución</a>
+        </li>
+        <li class="nav-menu__item">
+          <a href="#reportes" class="nav-menu__link">Reportes</a>
+        </li>
+      </ul>
+      <div class="sidebar__footer">
+        <a href="#" id="btn-logout" class="btn btn--secondary btn--block btn--sm">Cerrar sesión</a>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- Barra superior con titulo y usuario en sesion -->
+      <header class="topbar">
+        <h2 class="topbar__title">Panel del administrador</h2>
+        <span class="topbar__user" id="topbar-user"></span>
+      </header>
+
+      <main class="content">
+        <!-- Seccion de resumen con metricas generales -->
+        <section id="inicio">
+          <div class="grid grid--3" style="margin-bottom: 2rem;">
+            <div class="stat-card">
+              <div class="stat-card__number" id="stat-prestamos-activos">0</div>
+              <div class="stat-card__label">Préstamos activos</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #2e6a8f, #4a9ebb);">
+              <div class="stat-card__number" id="stat-equipos">0</div>
+              <div class="stat-card__label">Equipos registrados</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #3d7a8c, #5eb8d4);">
+              <div class="stat-card__number" id="stat-historial-total">0</div>
+              <div class="stat-card__label">Préstamos históricos</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Seccion de gestion de equipos (alta, edicion y eliminacion) -->
+        <section id="equipos" class="card">
+          <h2 class="card__title">Gestión de equipos</h2>
+          <div class="btn-group" style="margin-bottom: 1rem;">
+            <button type="button" class="btn btn--primary" id="btn-agregar-equipo">Agregar equipo</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Tipo</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-equipos"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Seccion de gestion de estudiantes -->
+        <section id="estudiantes" class="card">
+          <h2 class="card__title">Gestión de estudiantes</h2>
+          <div class="btn-group" style="margin-bottom: 1rem;">
+            <button type="button" class="btn btn--primary" id="btn-agregar-estudiante">Agregar estudiante</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Código</th>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-estudiantes"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Seccion para registrar devoluciones de prestamos activos -->
+        <section id="devoluciones" class="card">
+          <h2 class="card__title">Registrar devolución</h2>
+          <div class="grid grid--2">
+            <div class="form-group">
+              <label for="buscar">Buscar por estudiante o equipo</label>
+              <input type="text" id="buscar" class="form-control" placeholder="Código, nombre o equipo">
+            </div>
+            <div class="form-group">
+              <label for="prestamo">Préstamo activo</label>
+              <select id="prestamo" class="form-control"></select>
+            </div>
+          </div>
+          <button type="button" class="btn btn--primary" id="btn-devolucion">Registrar devolución</button>
+        </section>
+
+        <!-- Seccion de reportes (activos e historial) -->
+        <section id="reportes" class="card">
+          <h2 class="card__title">Reportes</h2>
+          <div class="btn-group">
+            <button type="button" class="btn btn--primary" id="btn-reporte-activos">Préstamos activos</button>
+            <button type="button" class="btn btn--secondary" id="btn-reporte-historial">Historial completo</button>
+          </div>
+          <div class="table-wrap" style="margin-top: 1.5rem;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Estudiante</th>
+                  <th>Equipo</th>
+                  <th>Inicio</th>
+                  <th>Límite</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-reportes"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts base, utilidades UI y logica del panel admin -->
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

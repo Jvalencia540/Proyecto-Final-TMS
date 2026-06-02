@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión | Gestión de Préstamos de Equipos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="layout layout--auth">
+  <!-- Tarjeta principal de autenticacion -->
+  <main class="auth-card">
+    <!-- Encabezado institucional -->
+    <div class="auth-card__logo">
+      <h1>UTP — Gestión de Préstamos</h1>
+      
+      <p>Equipos de cómputo · Biblioteca universitaria</p>
+    </div>
+    <p class="auth-card__subtitle">Ingrese el correo institucional y contraseña de su usuario</p>
+
+    <!-- Formulario de inicio de sesion -->
+    <form id="login-form">
+      <div id="login-error" class="alert alert--error" hidden role="alert"></div>
+      <div class="form-group">
+        <label for="correo">Correo institucional</label>
+        <input type="email" id="correo" name="correo" class="form-control" placeholder="nombre.apellido@utp.edu.co" required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" class="form-control" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn--primary btn--block">Iniciar sesión</button>
+    </form>
+
+    <!-- Enlace auxiliar para crear cuenta -->
+    <p class="auth-links">
+      ¿No tiene cuenta? <a href="register.html">Registrarse como estudiante</a>
+    </p>
+
+  </main>
+
+  <!-- Pie de pagina informativo -->
+  <footer class="footer" style="background: transparent; border: none; margin-top: 2rem;">
+    <p>Universidad Tecnológica de Pereira · Tecnología en Desarrollo de Software · 2026</p>
+    <p>Juan José Valencia García · Juan Pablo Muñoz Alvarez</p>
+  </footer>
+
+  <!-- Scripts base y logica de login -->
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

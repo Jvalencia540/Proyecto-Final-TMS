@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Estudiante | Gestión de Préstamos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Barra lateral: navegacion principal del estudiante -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <h1>Gestión de Préstamos</h1>
+        <span>Universidad Tecnológica de Pereira</span>
+      </div>
+      <p class="sidebar__role">Rol: Estudiante</p>
+      <ul class="nav-menu">
+        <li class="nav-menu__item">
+          <a href="#dashboard" class="nav-menu__link nav-menu__link--active">Inicio</a>
+        </li>
+        <li class="nav-menu__item">
+          <a href="#equipos" class="nav-menu__link">Equipos disponibles</a>
+        </li>
+        <li class="nav-menu__item">
+          <a href="#prestamos" class="nav-menu__link">Mis préstamos</a>
+        </li>
+        <li class="nav-menu__item">
+          <a href="#historial" class="nav-menu__link">Historial</a>
+        </li>
+        <li class="nav-menu__item">
+          <a href="#solicitar-prestamo" class="nav-menu__link">Solicitar préstamo</a>
+        </li>
+      </ul>
+      <div class="sidebar__footer">
+        <a href="#" id="btn-logout" class="btn btn--secondary btn--block btn--sm">Cerrar sesión</a>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- Barra superior con titulo y usuario en sesion -->
+      <header class="topbar">
+        <h2 class="topbar__title">Panel del estudiante</h2>
+        <span class="topbar__user" id="topbar-user"></span>
+      </header>
+
+      <main class="content">
+        <!-- Seccion de resumen con metricas personales -->
+        <section id="dashboard">
+          <div class="grid grid--3" style="margin-bottom: 2rem;">
+            <div class="stat-card">
+              <div class="stat-card__number" id="stat-disponibles">0</div>
+              <div class="stat-card__label">Equipos disponibles</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #2e6a8f, #4a9ebb);">
+              <div class="stat-card__number" id="stat-activos">0</div>
+              <div class="stat-card__label">Préstamos activos</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #3d7a8c, #5eb8d4);">
+              <div class="stat-card__number" id="stat-historial">0</div>
+              <div class="stat-card__label">Préstamos en historial</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Seccion de catalogo de equipos disponibles -->
+        <section id="equipos" class="card">
+          <h2 class="card__title">Equipos disponibles</h2>
+          <div class="grid grid--3" id="grid-equipos"></div>
+        </section>
+
+        <!-- Seccion de prestamos activos del estudiante -->
+        <section id="prestamos" class="card">
+          <h2 class="card__title">Mis préstamos activos</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Equipo</th>
+                  <th>Fecha préstamo</th>
+                  <th>Fecha límite</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-activos"></tbody>
+            </table>
+          </div>
+          <p class="text-muted" style="margin-top: 1rem;">
+            Máximo 2 préstamos activos por estudiante.
+          </p>
+        </section>
+
+        <!-- Seccion de historial de prestamos -->
+        <section id="historial" class="card">
+          <h2 class="card__title">Historial de préstamos</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Equipo</th>
+                  <th>Préstamo</th>
+                  <th>Devolución</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-historial"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Seccion de formulario para solicitar nuevo prestamo -->
+        <section id="solicitar-prestamo" class="card">
+          <h2 class="card__title">Solicitar préstamo</h2>
+          <form id="form-prestamo">
+            <div class="grid grid--2">
+              <div class="form-group">
+                <label for="equipo">Equipo</label>
+                <select id="equipo" class="form-control" required></select>
+              </div>
+              <div class="form-group">
+                <label for="devolucion">Fecha y hora de devolución estimada</label>
+                <input type="datetime-local" id="devolucion" class="form-control" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--primary" id="btn-confirmar-prestamo">Confirmar solicitud</button>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts base, utilidades UI y logica del panel estudiante -->
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/estudiante.js"></script>
+</body>
+</html>
